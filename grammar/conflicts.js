@@ -64,8 +64,6 @@ module.exports = {
     [$._operator_hash_head, $._unboxed_open],
     [$._exp_apply, $.controller],
     [$._exp_apply, $.observer],
-
-    [$._datacon_prefix, $._datacon_record],
   ],
 
 }

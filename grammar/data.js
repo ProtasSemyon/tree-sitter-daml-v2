@@ -91,6 +91,18 @@ module.exports = {
   ),
 
   // ------------------------------------------------------------------------
+  // daml constructors
+  // ------------------------------------------------------------------------
+
+  _simple_field: $ => seq(
+    field('name', $.variable),
+    ':',
+    field('type', $.quantified_type)
+  ),
+  
+  _record_fields_layout: $ => layout($, field('field', alias($._simple_field, $.field))),
+
+  // ------------------------------------------------------------------------
   // data type
   // ------------------------------------------------------------------------
 
@@ -101,22 +113,23 @@ module.exports = {
     repeat(prec('patterns', field('field', $._field_type))),
   ),
 
-  _datacon_infix: $ => prec('infix', seq(
-    $._cond_data_infix,
-    field('left_operand', $._field_type),
-    field('operator', $._conop),
-    field('right_operand', $._field_type),
-  )),
+  // TODO: WARNING: Return _datacon_infix, temporarily disabled. Enable when implement external 'with' keyword handling
+  // _datacon_infix: $ => prec('infix', seq(
+  //   $._cond_data_infix,
+  //   field('left_operand', $._field_type),
+  //   field('operator', $._conop),
+  //   field('right_operand', $._field_type),
+  // )),
 
   _datacon_record: $ => seq(
     field('name', $._constructor),
-    choice(
-      seq(
-        'with',
-        field('fields', $.daml_fields)
-      ),
-      field('fields', alias($._record_fields, $.fields))
-    )
+    field('fields', alias($._record_fields, $.fields))
+  ),
+
+  _datacon_with: $ => seq(
+    field('name', $._constructor),
+    'with',
+    field('fields', alias($._record_fields_layout, $.fields))
   ),
 
   _datacon_unboxed_sum: $ => unboxed_sum_single($, $.quantified_type),
@@ -140,9 +153,10 @@ module.exports = {
     forall($),
     context($),
     field('constructor', choice(
+      alias($._datacon_with, $.record),
       alias($._datacon_record, $.record),
       alias($._datacon_prefix, $.prefix),
-      alias($._datacon_infix, $.infix),
+      // alias($._datacon_infix, $.infix),
       alias($._datacon_special, $.special),
     )),
   ),

@@ -7,13 +7,15 @@ module.exports = {
   template: $ => seq(
     'template',
     $._type_head,
-    optional(seq('with', field('payload', $.daml_fields))),
+    optional(
+      seq(
+        'with',
+        field('fields', alias($._record_fields_layout, $.fields))
+      )
+    ),
     'where',
     field('body', $.template_body)
   ),
-
-  daml_fields: $ => layout($, field('field', $.daml_field)),
-  daml_field: $ => seq($.variable, ':', $.quantified_type),
 
   template_body: $ => layout($, field('item', $.template_item)),
 
@@ -31,7 +33,12 @@ module.exports = {
     field('name', $._constructor),
     ':',
     field('return_type', $.quantified_type),
-    optional(seq('with', field('arguments', $.daml_fields))),
+    optional(
+      seq(
+        'with',
+        field('arguments', alias($._record_fields_layout, $.arguments))
+      )
+    ),
     $.controller,
     optional($.observer),
     field('body', $._exp_do)
@@ -61,10 +68,10 @@ module.exports = {
   _exp_with: $ => prec.left('apply', seq(
     $.expression,
     'with',
-    $.with_fields
+    alias($.with_fields, $.fields)
   )),
 
-  with_fields: $ => layout($, $.with_field),
+  with_fields: $ => layout($, alias($.with_field, $.field)),
 
   with_field: $ => choice(
     seq($.variable, '=', $._exp),

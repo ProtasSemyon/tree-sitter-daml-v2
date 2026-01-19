@@ -7345,6 +7345,174 @@
         }
       ]
     },
+    "_simple_field": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "variable"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "quantified_type"
+          }
+        }
+      ]
+    },
+    "_record_fields_layout": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_cmd_layout_start"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_cmd_layout_start_explicit"
+              },
+              "named": false,
+              "value": "{"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "REPEAT1",
+                          "content": {
+                            "type": "STRING",
+                            "value": ";"
+                          }
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "_cond_layout_semicolon"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "field",
+                      "content": {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "_simple_field"
+                        },
+                        "named": true,
+                        "value": "field"
+                      }
+                    },
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "REPEAT1",
+                                "content": {
+                                  "type": "STRING",
+                                  "value": ";"
+                                }
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "_cond_layout_semicolon"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "FIELD",
+                            "name": "field",
+                            "content": {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "SYMBOL",
+                                "name": "_simple_field"
+                              },
+                              "named": true,
+                              "value": "field"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "REPEAT1",
+                          "content": {
+                            "type": "STRING",
+                            "value": ";"
+                          }
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "_cond_layout_semicolon"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_layout_end"
+        }
+      ]
+    },
     "_field_type": {
       "type": "CHOICE",
       "members": [
@@ -7390,43 +7558,6 @@
         }
       ]
     },
-    "_datacon_infix": {
-      "type": "PREC",
-      "value": "infix",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_cond_data_infix"
-          },
-          {
-            "type": "FIELD",
-            "name": "left_operand",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_field_type"
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "operator",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_conop"
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "right_operand",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_field_type"
-            }
-          }
-        ]
-      }
-    },
     "_datacon_record": {
       "type": "SEQ",
       "members": [
@@ -7439,39 +7570,47 @@
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "with"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "fields",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "daml_fields"
-                  }
-                }
-              ]
+          "type": "FIELD",
+          "name": "fields",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_record_fields"
             },
-            {
-              "type": "FIELD",
-              "name": "fields",
-              "content": {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_record_fields"
-                },
-                "named": true,
-                "value": "fields"
-              }
-            }
-          ]
+            "named": true,
+            "value": "fields"
+          }
+        }
+      ]
+    },
+    "_datacon_with": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_constructor"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "with"
+        },
+        {
+          "type": "FIELD",
+          "name": "fields",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_record_fields_layout"
+            },
+            "named": true,
+            "value": "fields"
+          }
         }
       ]
     },
@@ -7631,6 +7770,15 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
+                  "name": "_datacon_with"
+                },
+                "named": true,
+                "value": "record"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
                   "name": "_datacon_record"
                 },
                 "named": true,
@@ -7644,15 +7792,6 @@
                 },
                 "named": true,
                 "value": "prefix"
-              },
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_datacon_infix"
-                },
-                "named": true,
-                "value": "infix"
               },
               {
                 "type": "ALIAS",
@@ -12852,10 +12991,15 @@
                 },
                 {
                   "type": "FIELD",
-                  "name": "payload",
+                  "name": "fields",
                   "content": {
-                    "type": "SYMBOL",
-                    "name": "daml_fields"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_record_fields_layout"
+                    },
+                    "named": true,
+                    "value": "fields"
                   }
                 }
               ]
@@ -12876,156 +13020,6 @@
             "type": "SYMBOL",
             "name": "template_body"
           }
-        }
-      ]
-    },
-    "daml_fields": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_cmd_layout_start"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_cmd_layout_start_explicit"
-              },
-              "named": false,
-              "value": "{"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "REPEAT1",
-                          "content": {
-                            "type": "STRING",
-                            "value": ";"
-                          }
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "_cond_layout_semicolon"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                },
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "FIELD",
-                      "name": "field",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "daml_field"
-                      }
-                    },
-                    {
-                      "type": "REPEAT",
-                      "content": {
-                        "type": "SEQ",
-                        "members": [
-                          {
-                            "type": "CHOICE",
-                            "members": [
-                              {
-                                "type": "REPEAT1",
-                                "content": {
-                                  "type": "STRING",
-                                  "value": ";"
-                                }
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "_cond_layout_semicolon"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "FIELD",
-                            "name": "field",
-                            "content": {
-                              "type": "SYMBOL",
-                              "name": "daml_field"
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "REPEAT1",
-                          "content": {
-                            "type": "STRING",
-                            "value": ";"
-                          }
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "_cond_layout_semicolon"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_layout_end"
-        }
-      ]
-    },
-    "daml_field": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "variable"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "quantified_type"
         }
       ]
     },
@@ -13253,8 +13247,13 @@
                   "type": "FIELD",
                   "name": "arguments",
                   "content": {
-                    "type": "SYMBOL",
-                    "name": "daml_fields"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_record_fields_layout"
+                    },
+                    "named": true,
+                    "value": "arguments"
                   }
                 }
               ]
@@ -13450,8 +13449,13 @@
             "value": "with"
           },
           {
-            "type": "SYMBOL",
-            "name": "with_fields"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "with_fields"
+            },
+            "named": true,
+            "value": "fields"
           }
         ]
       }
@@ -13511,8 +13515,13 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "with_field"
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "with_field"
+                      },
+                      "named": true,
+                      "value": "field"
                     },
                     {
                       "type": "REPEAT",
@@ -13536,8 +13545,13 @@
                             ]
                           },
                           {
-                            "type": "SYMBOL",
-                            "name": "with_field"
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "with_field"
+                            },
+                            "named": true,
+                            "value": "field"
                           }
                         ]
                       }
@@ -13681,10 +13695,6 @@
     [
       "_exp_apply",
       "observer"
-    ],
-    [
-      "_datacon_prefix",
-      "_datacon_record"
     ]
   ],
   "precedences": [
@@ -14097,6 +14107,5 @@
     "statement",
     "qualifier",
     "guard"
-  ],
-  "reserved": {}
+  ]
 }

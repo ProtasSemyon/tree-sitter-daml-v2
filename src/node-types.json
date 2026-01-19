@@ -945,6 +945,22 @@
     }
   },
   {
+    "type": "arguments",
+    "named": true,
+    "fields": {
+      "field": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "field",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "arithmetic_sequence",
     "named": true,
     "fields": {
@@ -1258,7 +1274,7 @@
         "required": false,
         "types": [
           {
-            "type": "daml_fields",
+            "type": "arguments",
             "named": true
           }
         ]
@@ -1672,41 +1688,6 @@
     }
   },
   {
-    "type": "daml_field",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "quantified_type",
-          "named": true
-        },
-        {
-          "type": "variable",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "daml_fields",
-    "named": true,
-    "fields": {
-      "field": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "daml_field",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "daml_scenario",
     "named": true,
     "fields": {
@@ -1734,10 +1715,6 @@
         "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "infix",
-            "named": true
-          },
           {
             "type": "prefix",
             "named": true
@@ -2524,6 +2501,10 @@
           {
             "type": "field_name",
             "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
           }
         ]
       },
@@ -2565,9 +2546,21 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "punned_field",
+          "named": true
+        },
+        {
+          "type": "signature",
+          "named": true
+        },
         {
           "type": "type",
           "named": true
@@ -2730,6 +2723,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "field",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3572,15 +3575,7 @@
             "named": true
           },
           {
-            "type": "lazy_field",
-            "named": true
-          },
-          {
             "type": "pattern",
-            "named": true
-          },
-          {
-            "type": "strict_field",
             "named": true
           },
           {
@@ -3628,15 +3623,7 @@
             "named": true
           },
           {
-            "type": "lazy_field",
-            "named": true
-          },
-          {
             "type": "pattern",
-            "named": true
-          },
-          {
-            "type": "strict_field",
             "named": true
           },
           {
@@ -5271,10 +5258,6 @@
         "required": false,
         "types": [
           {
-            "type": "daml_fields",
-            "named": true
-          },
-          {
             "type": "fields",
             "named": true
           }
@@ -5617,6 +5600,16 @@
           }
         ]
       },
+      "fields": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "fields",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": false,
@@ -5645,16 +5638,6 @@
         "types": [
           {
             "type": "type_params",
-            "named": true
-          }
-        ]
-      },
-      "payload": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "daml_fields",
             "named": true
           }
         ]
@@ -6341,49 +6324,7 @@
           "named": true
         },
         {
-          "type": "with_fields",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "with_field",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "punned_field",
-          "named": true
-        },
-        {
-          "type": "signature",
-          "named": true
-        },
-        {
-          "type": "wildcard",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "with_fields",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "with_field",
+          "type": "fields",
           "named": true
         }
       ]
@@ -6559,8 +6500,7 @@
   },
   {
     "type": "comment",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "constructor",
@@ -6572,8 +6512,7 @@
   },
   {
     "type": "cpp",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "d",
@@ -6633,8 +6572,7 @@
   },
   {
     "type": "haddock",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "hiding",
@@ -6734,8 +6672,7 @@
   },
   {
     "type": "pragma",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "preconsuming",
