@@ -183,7 +183,7 @@ module.exports = {
 
   rec: $ => seq('rec', $._statements),
 
-  _do_keyword: _ => choice('mdo', 'do'),
+  _do_keyword: _ => 'do',
 
   do_module: $ => field('qualified_do', qualified($, $._do_keyword)),
 
@@ -372,6 +372,7 @@ module.exports = {
     alias($._exp_infix, $.infix),
     alias($._exp_negation, $.negation),
     alias($._exp_apply, $.apply),
+    alias($._exp_with, $.with),
     alias($._exp_record, $.record),
     alias($._exp_projection, $.projection),
     alias($._exp_arithmetic_sequence, $.arithmetic_sequence),

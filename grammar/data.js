@@ -110,7 +110,13 @@ module.exports = {
 
   _datacon_record: $ => seq(
     field('name', $._constructor),
-    field('fields', alias($._record_fields, $.fields)),
+    choice(
+      field('fields', alias($._record_fields, $.fields)),
+      seq(
+        'with',
+        field('fields', $.daml_fields)
+      )
+    )
   ),
 
   _datacon_unboxed_sum: $ => unboxed_sum_single($, $.quantified_type),

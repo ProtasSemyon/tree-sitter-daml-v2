@@ -1,3 +1,12 @@
+/**
+ * @file Digital Asset Modeling Language
+ * @author Semyon Protas <semyon.protas@gmail.com>
+ * @license MIT
+ */
+
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
+
 const
   class_ = require('./grammar/class.js'),
   conflicts = require('./grammar/conflicts.js'),
@@ -17,7 +26,8 @@ const
   patsyn = require('./grammar/patsyn.js'),
   precedences = require('./grammar/precedences.js'),
   th = require('./grammar/th.js'),
-  type = require('./grammar/type.js')
+  type = require('./grammar/type.js'),
+  daml = require('./grammar/daml.js')
 
 module.exports = grammar({
   name: 'daml',
@@ -43,6 +53,7 @@ module.exports = grammar({
     ...id,
     ...operator,
     ...lexeme,
+    ...daml,
 
   },
 

@@ -160,6 +160,10 @@
         "named": true
       },
       {
+        "type": "daml_scenario",
+        "named": true
+      },
+      {
         "type": "data_family",
         "named": true
       },
@@ -213,6 +217,10 @@
       },
       {
         "type": "role_annotation",
+        "named": true
+      },
+      {
+        "type": "template",
         "named": true
       },
       {
@@ -395,6 +403,10 @@
       },
       {
         "type": "variable",
+        "named": true
+      },
+      {
+        "type": "with",
         "named": true
       }
     ]
@@ -752,6 +764,25 @@
     "type": "abstract_family",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "agreement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "signature",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "alternative",
@@ -1219,6 +1250,96 @@
     }
   },
   {
+    "type": "choice",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "daml_fields",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "do",
+            "named": false
+          },
+          {
+            "type": "do_module",
+            "named": true
+          },
+          {
+            "type": "statement",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "constructor",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "quantified_type",
+            "named": true
+          }
+        ]
+      },
+      "statement": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "statement",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "controller",
+          "named": true
+        },
+        {
+          "type": "observer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "class",
     "named": true,
     "fields": {
@@ -1499,6 +1620,21 @@
     }
   },
   {
+    "type": "controller",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "daml",
     "named": true,
     "root": true,
@@ -1533,6 +1669,61 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "daml_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "quantified_type",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "daml_fields",
+    "named": true,
+    "fields": {
+      "field": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "daml_field",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "daml_scenario",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          },
+          {
+            "type": "signature",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2027,10 +2218,6 @@
           {
             "type": "do",
             "named": false
-          },
-          {
-            "type": "mdo",
-            "named": false
           }
         ]
       },
@@ -2050,6 +2237,25 @@
     "type": "empty_list",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "ensure",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "signature",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "entity",
@@ -4318,6 +4524,21 @@
     }
   },
   {
+    "type": "observer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "operator",
     "named": true,
     "fields": {}
@@ -5050,6 +5271,10 @@
         "required": false,
         "types": [
           {
+            "type": "daml_fields",
+            "named": true
+          },
+          {
             "type": "fields",
             "named": true
           }
@@ -5147,6 +5372,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "signatory",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5361,6 +5601,145 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "template",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "template_body",
+            "named": true
+          }
+        ]
+      },
+      "head": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "infix",
+            "named": true
+          },
+          {
+            "type": "name",
+            "named": true
+          },
+          {
+            "type": "parens",
+            "named": true
+          },
+          {
+            "type": "prefix_id",
+            "named": true
+          },
+          {
+            "type": "prefix_list",
+            "named": true
+          },
+          {
+            "type": "type_params",
+            "named": true
+          },
+          {
+            "type": "unit",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          },
+          {
+            "type": "prefix_id",
+            "named": true
+          },
+          {
+            "type": "prefix_list",
+            "named": true
+          },
+          {
+            "type": "unit",
+            "named": true
+          }
+        ]
+      },
+      "patterns": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_params",
+            "named": true
+          }
+        ]
+      },
+      "payload": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "daml_fields",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "template_body",
+    "named": true,
+    "fields": {
+      "item": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "template_item",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "template_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "agreement",
+          "named": true
+        },
+        {
+          "type": "choice",
+          "named": true
+        },
+        {
+          "type": "ensure",
+          "named": true
+        },
+        {
+          "type": "observer",
+          "named": true
+        },
+        {
+          "type": "signatory",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -5970,6 +6349,67 @@
     "fields": {}
   },
   {
+    "type": "with",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "with_fields",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "with_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "punned_field",
+          "named": true
+        },
+        {
+          "type": "signature",
+          "named": true
+        },
+        {
+          "type": "wildcard",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "with_fields",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "with_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "!",
     "named": false
   },
@@ -6046,6 +6486,10 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
     "type": "::",
     "named": false
   },
@@ -6090,6 +6534,10 @@
     "named": false
   },
   {
+    "type": "agreement",
+    "named": false
+  },
+  {
     "type": "all_names",
     "named": true
   },
@@ -6122,6 +6570,10 @@
     "named": true
   },
   {
+    "type": "choice",
+    "named": false
+  },
+  {
     "type": "class",
     "named": false
   },
@@ -6132,6 +6584,10 @@
   {
     "type": "constructor",
     "named": true
+  },
+  {
+    "type": "controller",
+    "named": false
   },
   {
     "type": "cpp",
@@ -6163,6 +6619,10 @@
   },
   {
     "type": "else",
+    "named": false
+  },
+  {
+    "type": "ensure",
     "named": false
   },
   {
@@ -6242,10 +6702,6 @@
     "named": false
   },
   {
-    "type": "mdo",
-    "named": false
-  },
-  {
     "type": "module",
     "named": false
   },
@@ -6266,6 +6722,14 @@
     "named": false
   },
   {
+    "type": "nonconsuming",
+    "named": false
+  },
+  {
+    "type": "observer",
+    "named": false
+  },
+  {
     "type": "of",
     "named": false
   },
@@ -6282,7 +6746,19 @@
     "named": false
   },
   {
+    "type": "postconsuming",
+    "named": false
+  },
+  {
     "type": "pragma",
+    "named": true
+  },
+  {
+    "type": "preconsuming",
+    "named": false
+  },
+  {
+    "type": "punned_field",
     "named": true
   },
   {
@@ -6310,6 +6786,14 @@
     "named": true
   },
   {
+    "type": "scenario",
+    "named": false
+  },
+  {
+    "type": "signatory",
+    "named": false
+  },
+  {
     "type": "stock",
     "named": false
   },
@@ -6319,6 +6803,10 @@
   },
   {
     "type": "t",
+    "named": false
+  },
+  {
+    "type": "template",
     "named": false
   },
   {
@@ -6343,6 +6831,10 @@
   },
   {
     "type": "where",
+    "named": false
+  },
+  {
+    "type": "with",
     "named": false
   },
   {

@@ -145,6 +145,8 @@ module.exports = {
     $.foreign_export,
     $.fixity,
     $.top_splice,
+    $.template,
+    $.daml_scenario,
   ),
 
 }
