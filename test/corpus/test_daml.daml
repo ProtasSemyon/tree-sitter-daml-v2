@@ -1,6 +1,6 @@
 data Bruh = Bruh with
   count: Decimal
-  party: party
+  party: Party
 
 template Aboba with
     info : Party

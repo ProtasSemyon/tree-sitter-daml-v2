@@ -441,6 +441,12 @@
 (field_name
   (variable) @variable.member)
 
+; (field 
+;   name: (variable)
+;   type: (apply
+;     constructor: (name)@constructor
+;     argument: (name)@type))
+
 (import_name
   (name)
   .
@@ -451,20 +457,3 @@
 ; ----------------------------------------------------------------------------
 ; Spell checking
 (comment) @spell
-
-;;; DAML
-
-(template
-  head: (_type_head
-          (_type_head_params
-            (_type_head_name
-              name: (constructor) @type))))
-
-(choice
-  name: (constructor) @function)
-
-(daml_field
-  (variable) @variable.member)
-
-(with_field
-  (punned_field) @variable.member)

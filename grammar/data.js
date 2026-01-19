@@ -95,7 +95,7 @@ module.exports = {
   // ------------------------------------------------------------------------
 
   _simple_field: $ => seq(
-    field('name', $.variable),
+    $.variable,
     ':',
     field('type', $.quantified_type)
   ),

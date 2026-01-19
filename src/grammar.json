@@ -7349,12 +7349,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "name",
-          "content": {
-            "type": "SYMBOL",
-            "name": "variable"
-          }
+          "type": "SYMBOL",
+          "name": "variable"
         },
         {
           "type": "STRING",
