@@ -362,13 +362,13 @@ newline_lookahead () at src/scanner.c:2583
 #1  0x00007ffff7a0740e in newline_start () at src/scanner.c:2604
 #2  scan () at src/scanner.c:2646
 #3  eval () at src/scanner.c:2684
-#4  tree_sitter_haskell_external_scanner_scan (payload=<optimized out>, lexer=<optimized out>,
+#4  tree_sitter_daml_external_scanner_scan (payload=<optimized out>, lexer=<optimized out>,
     valid_symbols=<optimized out>) at src/scanner.c:2724
 #5  0x0000555555772488 in ts_parser.lex ()
 ```
 
 For more control, launch `gdb tree-sitter` and start the process with `run test -f 'some test'`, and set a breakpoint
-with `break tree_sitter_haskell_external_scanner_scan`.
+with `break tree_sitter_daml_external_scanner_scan`.
 
 To disable optimizations, run `tree-sitter test --debug-build`.
 

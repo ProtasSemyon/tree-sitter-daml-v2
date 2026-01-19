@@ -1,13 +1,13 @@
 [package]
-name = "tree-sitter-haskell"
+name = "tree-sitter-daml"
 description = "Haskell grammar for tree-sitter"
 version = "0.23.1"
 authors = ["Max Brunsfeld <maxbrunsfeld@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-keywords = ["incremental", "parsing", "tree-sitter", "haskell"]
+keywords = ["incremental", "parsing", "tree-sitter", "daml"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-haskell"
+repository = "https://github.com/tree-sitter/tree-sitter-daml"
 edition = "2021"
 autoexamples = false
 

@@ -3395,7 +3395,7 @@ typedef struct {
 /**
  * This function allocates the persistent state of the parser that is passed into the other API functions.
  */
-void *tree_sitter_haskell_external_scanner_create() {
+void *tree_sitter_daml_external_scanner_create() {
   State *state = ts_calloc(1, sizeof(State));
   array_reserve(&state->contexts, 8);
   array_reserve(&state->lookahead, 8);
@@ -3409,12 +3409,12 @@ void *tree_sitter_haskell_external_scanner_create() {
  * Main logic entry point.
  * Since the state is a singular vector, it can just be cast and used directly.
  */
-bool tree_sitter_haskell_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+bool tree_sitter_daml_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   Env env = env_new(lexer, valid_symbols, (State*) payload);
   return scan(&env);
 }
 
-unsigned tree_sitter_haskell_external_scanner_serialize(void *payload, char *buffer) {
+unsigned tree_sitter_daml_external_scanner_serialize(void *payload, char *buffer) {
   State *state = (State *) payload;
   Persist persist = {.contexts = state->contexts.size, .newline = state->newline};
 #ifdef TREE_SITTER_DEBUG
@@ -3431,7 +3431,7 @@ unsigned tree_sitter_haskell_external_scanner_serialize(void *payload, char *buf
   return to_copy;
 }
 
-void tree_sitter_haskell_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
+void tree_sitter_daml_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
   State *state = (State *) payload;
   Persist p;
   Persist *persist;
@@ -3457,7 +3457,7 @@ void tree_sitter_haskell_external_scanner_deserialize(void *payload, const char 
 #endif
 }
 
-void tree_sitter_haskell_external_scanner_destroy(void *payload) {
+void tree_sitter_daml_external_scanner_destroy(void *payload) {
   State *state = (State*) payload;
 #ifdef TREE_SITTER_DEBUG
   palette();

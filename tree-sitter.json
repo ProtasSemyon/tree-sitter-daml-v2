@@ -1,16 +1,16 @@
 {
   "grammars": [
     {
-      "name": "haskell",
+      "name": "daml",
       "camelcase": "Haskell",
-      "scope": "source.haskell",
+      "scope": "source.daml",
       "path": ".",
       "file-types": [
         "hs",
         "hs-boot"
       ],
       "highlights": "queries/highlights.scm",
-      "injection-regex": "^(hs|haskell)$"
+      "injection-regex": "^(daml)$"
     }
   ],
   "metadata": {
@@ -33,7 +33,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/tree-sitter/tree-sitter-haskell"
+      "repository": "https://github.com/tree-sitter/tree-sitter-daml"
     }
   },
   "bindings": {

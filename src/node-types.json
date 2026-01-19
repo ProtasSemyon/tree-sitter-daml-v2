@@ -1499,6 +1499,43 @@
     }
   },
   {
+    "type": "daml",
+    "named": true,
+    "root": true,
+    "fields": {
+      "declarations": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "declarations",
+            "named": true
+          }
+        ]
+      },
+      "imports": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "imports",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "data_constructor",
     "named": true,
     "fields": {
@@ -3101,43 +3138,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "haskell",
-    "named": true,
-    "root": true,
-    "fields": {
-      "declarations": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "declarations",
-            "named": true
-          }
-        ]
-      },
-      "imports": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "imports",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "header",
-          "named": true
-        }
-      ]
     }
   },
   {

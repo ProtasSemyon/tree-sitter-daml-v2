@@ -10,7 +10,7 @@
 //! main = putStrLn "Hello World!"
 //! "#;
 //! let mut parser = Parser::new();
-//! let language = tree_sitter_haskell::LANGUAGE;
+//! let language = tree_sitter_daml::LANGUAGE;
 //! parser
 //!     .set_language(&language.into())
 //!     .expect("Error loading Haskell parser");
@@ -26,11 +26,11 @@
 use tree_sitter_language::LanguageFn;
 
 extern "C" {
-    fn tree_sitter_haskell() -> *const ();
+    fn tree_sitter_daml() -> *const ();
 }
 
 /// The tree-sitter [`LanguageFn`] for this grammar.
-pub const LANGUAGE: LanguageFn = unsafe { LanguageFn::from_raw(tree_sitter_haskell) };
+pub const LANGUAGE: LanguageFn = unsafe { LanguageFn::from_raw(tree_sitter_daml) };
 
 /// The content of the [`node-types.json`][] file for this grammar.
 ///

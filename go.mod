@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-haskell
+module github.com/tree-sitter/tree-sitter-daml
 
 go 1.22
 

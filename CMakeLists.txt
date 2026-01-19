@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(tree-sitter-haskell
+project(tree-sitter-daml
         VERSION "0.23.1"
         DESCRIPTION "Haskell grammar for tree-sitter"
-        HOMEPAGE_URL "https://github.com/tree-sitter/tree-sitter-haskell"
+        HOMEPAGE_URL "https://github.com/tree-sitter/tree-sitter-daml"
         LANGUAGES C)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
@@ -24,33 +24,33 @@ add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/parser.c"
                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
                    COMMENT "Generating parser.c")
 
-add_library(tree-sitter-haskell src/parser.c)
+add_library(tree-sitter-daml src/parser.c)
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.c)
-  target_sources(tree-sitter-haskell PRIVATE src/scanner.c)
+  target_sources(tree-sitter-daml PRIVATE src/scanner.c)
 endif()
-target_include_directories(tree-sitter-haskell PRIVATE src)
+target_include_directories(tree-sitter-daml PRIVATE src)
 
-target_compile_definitions(tree-sitter-haskell PRIVATE
+target_compile_definitions(tree-sitter-daml PRIVATE
                            $<$<BOOL:${TREE_SITTER_REUSE_ALLOCATOR}>:TREE_SITTER_REUSE_ALLOCATOR>
                            $<$<CONFIG:Debug>:TREE_SITTER_DEBUG>)
 
-set_target_properties(tree-sitter-haskell
+set_target_properties(tree-sitter-daml
                       PROPERTIES
                       C_STANDARD 11
                       POSITION_INDEPENDENT_CODE ON
                       SOVERSION "${TREE_SITTER_ABI_VERSION}.${PROJECT_VERSION_MAJOR}"
                       DEFINE_SYMBOL "")
 
-configure_file(bindings/c/tree-sitter-haskell.pc.in
-               "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-haskell.pc" @ONLY)
+configure_file(bindings/c/tree-sitter-daml.pc.in
+               "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-daml.pc" @ONLY)
 
 include(GNUInstallDirs)
 
-install(FILES bindings/c/tree-sitter-haskell.h
+install(FILES bindings/c/tree-sitter-daml.h
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/tree_sitter")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-haskell.pc"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-daml.pc"
         DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig")
-install(TARGETS tree-sitter-haskell
+install(TARGETS tree-sitter-daml
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 
 add_custom_target(ts-test "${TREE_SITTER_CLI}" test

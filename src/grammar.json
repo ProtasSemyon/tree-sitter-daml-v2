@@ -1,9 +1,9 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
-  "name": "haskell",
+  "name": "daml",
   "word": "variable",
   "rules": {
-    "haskell": {
+    "daml": {
       "type": "SEQ",
       "members": [
         {

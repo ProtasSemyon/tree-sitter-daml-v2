@@ -20,10 +20,10 @@ const
   type = require('./grammar/type.js')
 
 module.exports = grammar({
-  name: 'haskell',
+  name: 'daml',
 
   rules: {
-    haskell: $ => seq(
+    daml: $ => seq(
       optional($.header),
       optional($._body),
     ),

@@ -1,5 +1,5 @@
-#ifndef TREE_SITTER_HASKELL_H_
-#define TREE_SITTER_HASKELL_H_
+#ifndef tree_sitter_daml_H_
+#define tree_sitter_daml_H_
 
 typedef struct TSLanguage TSLanguage;
 
@@ -7,10 +7,10 @@ typedef struct TSLanguage TSLanguage;
 extern "C" {
 #endif
 
-const TSLanguage *tree_sitter_haskell(void);
+const TSLanguage *tree_sitter_daml(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // TREE_SITTER_HASKELL_H_
+#endif // tree_sitter_daml_H_
