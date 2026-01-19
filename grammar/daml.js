@@ -6,7 +6,7 @@ const {
 module.exports = {
   template: $ => seq(
     'template',
-    field('head', $._type_head),
+    $._type_head,
     optional(seq('with', field('payload', $.daml_fields))),
     'where',
     field('body', $.template_body)

@@ -1,0 +1,24 @@
+module Temp where
+
+data Bruh = Bruh with
+  count: Decimal
+  party: party
+  
+template Asset
+  with
+    issuer : Party
+    owner  : Party
+    amount : Int
+  where
+    signatory issuer
+    
+exercise cid Transfer with
+  newOwner = bob
+
+create Asset with issuer = alice; owner = bob; amount = 10
+
+create Asset with
+  party
+  amount = 10
+  
+create Asset with party; amount = 10

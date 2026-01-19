@@ -111,11 +111,11 @@ module.exports = {
   _datacon_record: $ => seq(
     field('name', $._constructor),
     choice(
-      field('fields', alias($._record_fields, $.fields)),
       seq(
         'with',
         field('fields', $.daml_fields)
-      )
+      ),
+      field('fields', alias($._record_fields, $.fields))
     )
   ),
 
@@ -140,9 +140,9 @@ module.exports = {
     forall($),
     context($),
     field('constructor', choice(
+      alias($._datacon_record, $.record),
       alias($._datacon_prefix, $.prefix),
       alias($._datacon_infix, $.infix),
-      alias($._datacon_record, $.record),
       alias($._datacon_special, $.special),
     )),
   ),
@@ -172,7 +172,7 @@ module.exports = {
   // newtype
   // ------------------------------------------------------------------------
 
-  _newtype_con_field: $ =>  $.type,
+  _newtype_con_field: $ => $.type,
 
   newtype_constructor: $ => seq(
     field('name', $._con),

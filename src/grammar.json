@@ -7442,19 +7442,6 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "FIELD",
-              "name": "fields",
-              "content": {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_record_fields"
-                },
-                "named": true,
-                "value": "fields"
-              }
-            },
-            {
               "type": "SEQ",
               "members": [
                 {
@@ -7470,6 +7457,19 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "FIELD",
+              "name": "fields",
+              "content": {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_record_fields"
+                },
+                "named": true,
+                "value": "fields"
+              }
             }
           ]
         }
@@ -7631,6 +7631,15 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
+                  "name": "_datacon_record"
+                },
+                "named": true,
+                "value": "record"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
                   "name": "_datacon_prefix"
                 },
                 "named": true,
@@ -7644,15 +7653,6 @@
                 },
                 "named": true,
                 "value": "infix"
-              },
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_datacon_record"
-                },
-                "named": true,
-                "value": "record"
               },
               {
                 "type": "ALIAS",
@@ -12837,12 +12837,8 @@
           "value": "template"
         },
         {
-          "type": "FIELD",
-          "name": "head",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_type_head"
-          }
+          "type": "SYMBOL",
+          "name": "_type_head"
         },
         {
           "type": "CHOICE",
@@ -13685,6 +13681,10 @@
     [
       "_exp_apply",
       "observer"
+    ],
+    [
+      "_datacon_prefix",
+      "_datacon_record"
     ]
   ],
   "precedences": [
@@ -14097,5 +14097,6 @@
     "statement",
     "qualifier",
     "guard"
-  ]
+  ],
+  "reserved": {}
 }

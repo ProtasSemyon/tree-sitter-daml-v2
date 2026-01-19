@@ -121,11 +121,21 @@
   "stock"
   "anyclass"
   "do"
-  "mdo"
   "rec"
   "infix"
   "infixl"
   "infixr"
+  "template"
+  "choice"
+  "nonconsuming"
+  "preconsuming"
+  "postconsuming"
+  "controller"
+  "observer"
+  "signatory"
+  "ensure"
+  "agreement"
+  "scenario"
 ] @keyword
 
 ; ----------------------------------------------------------------------------
@@ -441,3 +451,20 @@
 ; ----------------------------------------------------------------------------
 ; Spell checking
 (comment) @spell
+
+;;; DAML
+
+(template
+  head: (_type_head
+          (_type_head_params
+            (_type_head_name
+              name: (constructor) @type))))
+
+(choice
+  name: (constructor) @function)
+
+(daml_field
+  (variable) @variable.member)
+
+(with_field
+  (punned_field) @variable.member)
