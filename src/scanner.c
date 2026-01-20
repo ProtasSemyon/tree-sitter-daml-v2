@@ -2777,6 +2777,21 @@ static Symbol process_token_symop(Env *env, bool whitespace, Lexed next) {
     case LPercent:
       return prefix_or_varsym(env, whitespace, PREFIX_PERCENT);
     case LSymop:
+      if (symop_lookahead(env) == 1 && char0(env, ':')) {
+        // A single colon is ambiguous.
+        // It's a type separator, or an infix constructor in a pattern (cons).
+        // A layout semicolon is valid between top-level declarations, but not inside a pattern.
+        // We use this to distinguish the two cases.
+        if (valid(env, SEMICOLON)) {
+          // Semicolon is valid, so we're likely in a context where declarations are expected.
+          // This must be a type signature. Fail and let the grammar's literal ':' match.
+          return FAIL;
+        } else {
+          // Semicolon is not valid. We're likely inside a pattern or expression.
+          // This must be the infix cons operator.
+          return finish_symop(env, CONSYM);
+        }
+      }
       if (char0(env, ':')) return finish_symop(env, CONSYM);
       else return finish_symop(env, VARSYM);
     // The following are handled here despite not being purely symop tokens because `process_token_symop` is executed

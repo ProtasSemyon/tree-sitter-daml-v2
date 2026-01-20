@@ -1,0 +1,28 @@
+amuletMetadata : Amulet -> Api.Token.MetadataV1.Metadata -> (Abobus -> Amogus)
+
+sumList : [Int] -> Int
+sumList list = case list of
+  -- Базовый случай: пустой список
+  [] -> 0
+  
+  -- Инфиксный оператор в паттерне:
+  -- x (head) — это первый элемент
+  -- xs (tail) — это остаток списка
+  x : xs -> x + sumList xs
+  
+setup : Script ()
+setup = do
+  -- Исходный список
+  let initialList = [2, 3, 4]
+
+  -- Использование инфиксного оператора :
+  -- Мы добавляем 1 в начало списка initialList
+  let newList = 1 : initialList
+  
+  -- Результат: [1, 2, 3, 4]
+  debug newList
+
+  -- Можно также создавать списки с нуля, объединяя операторы в цепочку:
+  -- Обязательно должен заканчиваться пустым списком []
+  
+  debug anotherList -- ["A", "B", "C"]

@@ -5605,50 +5605,14 @@
             "named": true
           }
         ]
-      },
-      "name": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "name",
-            "named": true
-          },
-          {
-            "type": "prefix_id",
-            "named": true
-          },
-          {
-            "type": "prefix_list",
-            "named": true
-          },
-          {
-            "type": "unit",
-            "named": true
-          }
-        ]
-      },
-      "patterns": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "type_params",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "infix",
-          "named": true
-        },
-        {
-          "type": "parens",
+          "type": "constructor",
           "named": true
         }
       ]

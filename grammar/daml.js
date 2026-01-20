@@ -6,7 +6,7 @@ const {
 module.exports = {
   template: $ => seq(
     'template',
-    $._type_head,
+    $._constructor,
     optional(
       seq(
         'with',

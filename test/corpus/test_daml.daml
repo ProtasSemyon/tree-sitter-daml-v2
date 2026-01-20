@@ -1,19 +1,57 @@
-data Bruh = Bruh with
-  count: Decimal
-  party: Party
+-- Copyright (c) 2024 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved.
+-- SPDX-License-Identifier: Apache-2.0
 
-template Aboba with
-    info : Party
-    cid : PartyCid Abobuga
-  where
-    signatory info
-    
-    choice Abobiboba : ContractId Hueta with
-        argument : Party
-      controller argument do
-        amogus <- create super shit with
-          shit = x <= 10.0
-          aboba = argument
-          lerora
-          ..
+-- | The contracts representing the long-term state of Splice.
+module Splice.Amulet where
+
+import Prelude
+import DA.Optional (fromOptional)
+
+import Splice.Api.Token.MetadataV1 qualified as Api.Token.MetadataV1
+
+import Splice.Util
+
+-- | Result of an operation that created a new amulet, e.g.,
+-- by minting a fresh amulet, or by unlocking a locked amulet.
+data AmuletCreateSummary amuletContractId = AmuletCreateSummary with
+    amulet : amuletContractId -- ^ The new amulet that was created
+    amuletPrice : Decimal -- ^ The amulet price at the round the amulet was created
+    round: Round -- ^ Round for which this amulet was created.
+  deriving (Eq, Show)
   
+data LockedAmulet_ExpireAmuletResult = LockedAmulet_ExpireAmuletResult with
+  expireSum : AmuletExpireSummary
+  meta : Optional Api.Token.MetadataV1.Metadata
+
+data ValidatorRight_ArchiveAsValidatorResult = ValidatorRight_ArchiveAsValidatorResult
+
+data AppRewardCoupon_DsoExpireResult = AppRewardCoupon_DsoExpireResult with
+  featured : Bool
+  amount : Decimal
+
+-- | A amulet, which can be locked and whose amount expires over time.
+--
+-- The expiry serves to charge an inactivity fee, and thereby ensures that the
+-- SVs can reclaim the corresponding storage space at some point in the future.
+template Amulet
+  with
+    dso : Party
+    owner : Party
+    amount : ExpiringAmount
+  where
+    signatory dso, owner
+    ensure validExpiringAmount amount
+
+    choice Amulet_Expire : Amulet_ExpireResult
+      with
+        roundCid : ContractId OpenMiningRound
+      controller dso
+      do  requireAmuletExpiredForAllOpenRounds roundCid this
+          let expireSum = AmuletExpireSummary with
+                owner = owner
+                round = amount.createdAt
+                changeToInitialAmountAsOfRoundZero = - getValueAsOfRound0 amount
+                changeToHoldingFeesRate = - (amount.ratePerRound.rate)
+          return Amulet_ExpireResult with
+            meta = Some (simpleHoldingTxMeta TxKind_ExpireDust None (Some amount.initialAmount))
+            ..

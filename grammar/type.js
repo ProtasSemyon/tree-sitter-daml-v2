@@ -254,12 +254,12 @@ module.exports = {
   ),
 
   _type_annotation: $ => seq(
-    $._colon2,
+    ':',
     field('type', $.quantified_type),
   ),
 
   _kind_annotation: $ => seq(
-    $._colon2,
+    ':',
     field('kind', $.quantified_type),
   ),
 

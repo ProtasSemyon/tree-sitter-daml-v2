@@ -1441,8 +1441,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_colon2"
+          "type": "STRING",
+          "value": ":"
         },
         {
           "type": "FIELD",
@@ -1458,8 +1458,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_colon2"
+          "type": "STRING",
+          "value": ":"
         },
         {
           "type": "FIELD",
@@ -12973,7 +12973,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_type_head"
+          "name": "_constructor"
         },
         {
           "type": "CHOICE",
