@@ -13907,11 +13907,21 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "interface"
+          },
+          "named": true,
           "value": "interface"
         },
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "instance"
+          },
+          "named": true,
           "value": "instance"
         },
         {

@@ -122,8 +122,8 @@ module.exports = {
   ),
 
   interface_instance: $ => seq(
-    'interface',
-    'instance',
+    alias('interface', $.interface),
+    alias('instance', $.instance),
     field('interface', $.quantified_type),
     'for',
     field('for_type', $.quantified_type),

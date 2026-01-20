@@ -3794,7 +3794,7 @@
       },
       "name": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "infix",
@@ -3888,6 +3888,20 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "instance",
+          "named": true
+        },
+        {
+          "type": "interface",
+          "named": true
+        }
+      ]
     }
   },
   {

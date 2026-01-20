@@ -108,7 +108,6 @@
   "let"
   "in"
   "class"
-  "instance"
   "pattern"
   "data"
   "newtype"
@@ -127,7 +126,6 @@
   "infixr"
   "template"
   "choice"
-  "nonconsuming"
   "preconsuming"
   "postconsuming"
   "controller"
@@ -137,6 +135,11 @@
   "agreement"
   "scenario"
 ] @keyword
+
+[
+  "instance",
+  "nonconsuming"
+] @preproc
 
 ; ----------------------------------------------------------------------------
 ; Functions and variables
@@ -441,7 +444,7 @@
 (field_name
   (variable) @variable.member)
 
-; (field 
+; (field
 ;   name: (variable)
 ;   type: (apply
 ;     constructor: (name)@constructor
