@@ -124,22 +124,7 @@
   "infix"
   "infixl"
   "infixr"
-  "template"
-  "choice"
-  "preconsuming"
-  "postconsuming"
-  "controller"
-  "observer"
-  "signatory"
-  "ensure"
-  "agreement"
-  "scenario"
 ] @keyword
-
-[
-  "instance",
-  "nonconsuming"
-] @preproc
 
 ; ----------------------------------------------------------------------------
 ; Functions and variables
@@ -380,9 +365,10 @@
 ; Types
 (name) @type
 
-(type/star) @type
+; (type/star) @type
 
-(variable) @type
+(variable) @variable
+(punned_field) @variable
 
 (constructor) @constructor
 
@@ -438,17 +424,15 @@
     "traceM" "traceShowM" "traceEvent" "traceEventWith" "traceEventIO" "flushEventLog" "traceMarker"
     "traceMarkerIO"))
 
+((variable) @variable.builtin
+  (#any-of? @variable.builtin
+    "this"))
+
 ; ----------------------------------------------------------------------------
 ; Fields
 
 (field_name
   (variable) @variable.member)
-
-; (field
-;   name: (variable)
-;   type: (apply
-;     constructor: (name)@constructor
-;     argument: (name)@type))
 
 (import_name
   (name)
@@ -458,5 +442,71 @@
 
 
 ; ----------------------------------------------------------------------------
-; Spell checking
-(comment) @spell
+; ; Spell checking
+; (comment) @spell
+
+[
+  "template"
+  "interface"
+  "with"
+  "for"
+  "nonconsuming"
+  "choice"
+  "preconsuming"
+  "postconsuming"
+  "instance"
+] @keyword
+
+[
+  "signatory"
+  "ensure"
+  "controller"
+  "observer"
+]@function
+
+(function
+  name: (variable) @function)
+
+(apply
+  function: (variable) @function.call)
+
+(signature
+  name: (variable) @function
+  type: (function))
+
+(choice
+  name: (constructor) @function.method)
+
+(data_type
+  patterns: (type_params
+    bind: (variable)@concept))
+
+(field
+  type: (variable) @concept)
+[
+  "view"
+] @variable.builtin
+
+
+; TODO broken, also huh?
+(module
+  (module_id)@constructor)
+
+
+(qualified
+  module: (module)
+  id: (constructor)@type)
+
+(template
+  (constructor) @type)
+
+(projection
+  expression: (variable) @function.call)
+
+(projection
+  expression: (projection
+    field: (field_name
+      (variable) @function.call)))
+
+(interface)@keyword
+(instance)@keyword
