@@ -147,6 +147,7 @@ module.exports = {
     $.top_splice,
     $.template,
     $.daml_scenario,
+    $.interface,
   ),
 
 }

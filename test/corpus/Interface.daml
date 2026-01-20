@@ -1,0 +1,67 @@
+template FeaturedAppActivityMarker
+  with
+    dso : Party
+    provider : Party
+      -- ^ The featured app provider that created the activity marker.
+    beneficiary : Party
+      -- ^ The party that has the right to mint the reward.
+    weight : Decimal
+      -- ^ The weight of the marker. This is used to split the rewards
+      -- for a single action, e.g., multiple parties collaborating to enable
+      -- a transfer,
+      -- by creating several FeaturedAppActivityMarkers with different
+      -- beneficiaries such that the weights add up to 1.0.
+  where
+    signatory dso
+    observer provider, beneficiary
+    ensure 0.0 < weight && weight <= 1.0
+
+    interface instance Splice.Api.FeaturedAppRightV1.FeaturedAppRight for FeaturedAppRight where
+      view = Splice.Api.FeaturedAppRightV1.FeaturedAppRightView with dso = aboba, provider
+
+      featuredAppRight_CreateActivityMarkerImpl _self arg = do
+         validateAppRewardBeneficiaries arg.beneficiaries
+         let groupedBeneficiaries = Map.fromListWithR (+) (map (\b -> (b.beneficiary, b.weight)) arg.beneficiaries)
+         cids <- forA (Map.toList groupedBeneficiaries) $ \(beneficiary, weight) ->
+           create FeaturedAppActivityMarker
+             with
+               dso
+               provider
+               beneficiary = beneficiary
+               weight = weight
+         pure (Splice.Api.FeaturedAppRightV1.FeaturedAppRight_CreateActivityMarkerResult $ map toInterfaceContractId cids)
+
+interface FeaturedAppRight where
+  viewtype FeaturedAppRightView
+
+  featuredAppRight_CreateActivityMarkerImpl : ContractId FeaturedAppRight -> FeaturedAppRight_CreateActivityMarker -> Update FeaturedAppRight_CreateActivityMarkerResult
+
+  nonconsuming choice FeaturedAppRight_CreateActivityMarker : FeaturedAppRight_CreateActivityMarkerResult
+    -- ^ Record activity due to a featured app.
+    with
+      beneficiaries : [AppRewardBeneficiary]
+        -- ^ The set of beneficiaries and weights that define how the rewards should be split up
+        -- between the beneficiary parties.
+        --
+        -- Implementations SHOULD check that the weights are positive and add up to 1.0.
+        -- Implementations MAY also impose a limit on the maximum number of beneficiaries.
+    controller (view this).provider
+    do featuredAppRight_CreateActivityMarkerImpl this self arg
+    
+  interface instance Splice.Api.FeaturedAppRightV1.FeaturedAppRight for FeaturedAppRight where
+    view = Splice.Api.FeaturedAppRightV1.FeaturedAppRightView with dso = aboba, provider
+
+    featuredAppRight_CreateActivityMarkerImpl _self arg = do
+        validateAppRewardBeneficiaries arg.beneficiaries
+        let groupedBeneficiaries = Map.fromListWithR (+) (map (\b -> (b.beneficiary, b.weight)) arg.beneficiaries)
+        cids <- forA (Map.toList groupedBeneficiaries) $ \(beneficiary, weight) ->
+          create FeaturedAppActivityMarker
+            with
+              dso
+              provider
+              beneficiary = beneficiary
+              weight = weight
+        pure (Splice.Api.FeaturedAppRightV1.FeaturedAppRight_CreateActivityMarkerResult $ map toInterfaceContractId cids)
+
+
+    

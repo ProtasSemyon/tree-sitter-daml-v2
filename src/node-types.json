@@ -204,6 +204,10 @@
         "named": true
       },
       {
+        "type": "interface",
+        "named": true
+      },
+      {
         "type": "kind_signature",
         "named": true
       },
@@ -3765,6 +3769,194 @@
     "fields": {}
   },
   {
+    "type": "interface",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "interface_body",
+            "named": true
+          }
+        ]
+      },
+      "context": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "context",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "infix",
+            "named": true
+          },
+          {
+            "type": "name",
+            "named": true
+          },
+          {
+            "type": "parens",
+            "named": true
+          },
+          {
+            "type": "prefix_id",
+            "named": true
+          },
+          {
+            "type": "prefix_list",
+            "named": true
+          },
+          {
+            "type": "type_params",
+            "named": true
+          },
+          {
+            "type": "unit",
+            "named": true
+          }
+        ]
+      },
+      "patterns": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_params",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "interface_body",
+    "named": true,
+    "fields": {
+      "item": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "interface_item",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "interface_instance",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "interface_instance_body",
+            "named": true
+          }
+        ]
+      },
+      "for_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "quantified_type",
+            "named": true
+          }
+        ]
+      },
+      "interface": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "quantified_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "interface_instance_body",
+    "named": true,
+    "fields": {
+      "item": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "interface_instance_item",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "interface_instance_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "bind",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "view_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "choice",
+          "named": true
+        },
+        {
+          "type": "interface_instance",
+          "named": true
+        },
+        {
+          "type": "signature",
+          "named": true
+        },
+        {
+          "type": "viewtype",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "invisible",
     "named": true,
     "fields": {
@@ -5655,6 +5847,10 @@
           "named": true
         },
         {
+          "type": "interface_instance",
+          "named": true
+        },
+        {
           "type": "observer",
           "named": true
         },
@@ -6229,6 +6425,25 @@
     }
   },
   {
+    "type": "view_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "signature",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "view_pattern",
     "named": true,
     "fields": {
@@ -6260,6 +6475,22 @@
           },
           {
             "type": "view_pattern",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "viewtype",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "quantified_type",
             "named": true
           }
         ]
@@ -6519,6 +6750,10 @@
     "named": true
   },
   {
+    "type": "for",
+    "named": false
+  },
+  {
     "type": "forall",
     "named": false
   },
@@ -6572,6 +6807,10 @@
   },
   {
     "type": "instance",
+    "named": false
+  },
+  {
+    "type": "interface",
     "named": false
   },
   {
@@ -6708,6 +6947,14 @@
   },
   {
     "type": "via",
+    "named": false
+  },
+  {
+    "type": "view",
+    "named": false
+  },
+  {
+    "type": "viewtype",
     "named": false
   },
   {
